@@ -880,6 +880,69 @@
     }
 
     /* ─── RESPONSIVE ─── */
+    /* ─── MOBILE NAV MENU ─── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+      border-radius: 8px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--cream);
+      z-index: 99;
+      padding: 32px 24px;
+      flex-direction: column;
+      gap: 0;
+      overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 22px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(26,23,20,0.08);
+      letter-spacing: -0.3px;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--gold-dark); }
+    .mobile-menu .mobile-menu-cta {
+      margin-top: 24px;
+      display: block;
+      text-align: center;
+      padding: 16px 28px;
+      background: var(--ink);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: var(--radius-pill);
+    }
+
     @media (max-width: 1024px) {
       .hero { grid-template-columns: 1fr; padding: 60px 40px; min-height: auto; gap: 60px; }
       .hero-text { padding-right: 0; }
@@ -892,23 +955,103 @@
     }
 
     @media (max-width: 640px) {
+      /* Nav */
       nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .hero { padding: 40px 20px; }
+      .nav-hamburger { display: flex; }
+
+      /* Hero */
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 36px 20px 48px;
+        min-height: auto;
+        gap: 48px;
+      }
+      .hero-text { padding-right: 0; }
+      .hero h1 { font-size: clamp(36px, 9vw, 48px); letter-spacing: -1px; }
+      .hero-sub { font-size: 16px; margin-bottom: 28px; }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .btn-primary, .btn-ghost {
+        justify-content: center;
+        padding: 15px 20px;
+        font-size: 15px;
+      }
+      .hero-price-note { text-align: center; }
+
+      /* Hero card stack — scale down to fit mobile viewport */
+      .hero-visual { overflow: visible; }
+      .hero-card-stack {
+        width: 260px;
+        height: 320px;
+        margin: 0 auto;
+      }
+      .hero-card-stack .card-img:nth-child(1) { width: 180px; top: 40px; left: 0; }
+      .hero-card-stack .card-img:nth-child(2) { width: 195px; top: 10px; right: 0; }
+      .hero-card-stack .card-img:nth-child(3) { width: 210px; bottom: 0; left: 25px; }
+      .hero-qr-badge {
+        right: -20px;
+        bottom: -14px;
+        padding: 10px 14px;
+        gap: 10px;
+      }
+      .qr-icon { width: 34px; height: 34px; border-radius: 6px; }
+      .qr-badge-text strong { font-size: 12px; }
+      .qr-badge-text span { font-size: 10px; }
+
+      /* General */
       .section-inner { padding: 0 20px; }
-      .how { padding: 80px 0; }
+      .section-body { max-width: 100%; }
+
+      /* How It Works */
+      .how { padding: 72px 0; }
       .how-steps { grid-template-columns: 1fr; gap: 2px; }
+      .step { padding: 28px 24px; }
       .step:first-child { border-radius: var(--radius-md) var(--radius-md) 0 0; }
       .step:last-child  { border-radius: 0 0 var(--radius-md) var(--radius-md); }
-      .collection { padding: 80px 0; }
-      .cards-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .qr-feature { padding: 80px 0; }
-      .values { padding: 80px 0; }
-      .values-grid { grid-template-columns: 1fr; gap: 36px; }
-      .cta-band { padding: 80px 0; }
-      .footer-top { grid-template-columns: 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+      /* Collection */
+      .collection { padding: 72px 0; }
+      .collection-header { text-align: left; }
+      .collection-header .section-body { margin: 0; }
+      .cards-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .card-item-name { font-size: 15px; }
+      .card-item-desc { display: none; }
+      .card-item-price { font-size: 14px; }
+
+      /* QR Feature */
+      .qr-feature { padding: 72px 0; }
+      .phone-mockup { width: 220px; }
+      .phone-screen { padding: 16px; gap: 12px; }
+      .phone-qr-box { width: 90px; height: 90px; }
+      .phone-qr-box svg { width: 60px; height: 60px; }
+
+      /* Values */
+      .values { padding: 72px 0; }
+      .values-grid { grid-template-columns: 1fr; gap: 32px; }
+
+      /* CTA */
+      .cta-band { padding: 72px 0; }
+      .cta-band h2 { font-size: clamp(30px, 8vw, 42px); }
+      .cta-band .btn-primary { padding: 15px 32px; font-size: 15px; }
+      .price-range { font-size: 12px; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; }
       .card-float { display: none; }
+    }
+
+    @media (max-width: 380px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .hero-card-stack { width: 220px; height: 280px; }
+      .hero-card-stack .card-img:nth-child(1) { width: 150px; }
+      .hero-card-stack .card-img:nth-child(2) { width: 165px; }
+      .hero-card-stack .card-img:nth-child(3) { width: 180px; left: 20px; }
     }
   </style>
 </head>
@@ -923,7 +1066,18 @@
       <li><a href="#about">About</a></li>
     </ul>
     <a href="#collection" class="nav-cta">Shop Cards</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- ─── MOBILE MENU ─── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#collection" class="mobile-menu-link">Cards</a>
+    <a href="#how-it-works" class="mobile-menu-link">How It Works</a>
+    <a href="#about" class="mobile-menu-link">About</a>
+    <a href="#collection" class="mobile-menu-cta">Shop Cards →</a>
+  </div>
 
   <!-- ─── HERO ─── -->
   <section>
@@ -1280,5 +1434,24 @@
     </div>
   </footer>
 
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    // Close menu on any link click inside
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
 </body>
 </html>
