@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momento — Celebration Cards for College Milestones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #faf8f4;
+      --cream-dark:  #f2ede4;
+      --ink:         #1a1714;
+      --ink-soft:    #4a4540;
+      --ink-muted:   #8a8278;
+      --gold:        #b8975a;
+      --gold-light:  #d4b07a;
+      --gold-dark:   #8c6e3a;
+      --burgundy:    #6b1f2a;
+      --navy:        #1a2744;
+      --white:       #ffffff;
+
+      --radius-sm:   6px;
+      --radius-md:   12px;
+      --radius-lg:   20px;
+      --radius-pill: 999px;
+
+      --shadow-card: 0 4px 24px rgba(26,23,20,0.08), 0 1px 4px rgba(26,23,20,0.06);
+      --shadow-lift: 0 16px 48px rgba(26,23,20,0.14), 0 4px 12px rgba(26,23,20,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(250,248,244,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(184,151,90,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      text-decoration: none;
+      letter-spacing: -0.1px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 20px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: var(--radius-pill);
+      letter-spacing: -0.1px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-cta:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      padding: 80px 80px 80px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .hero-text { padding-right: 60px; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      background: rgba(184,151,90,0.12);
+      border: 1px solid rgba(184,151,90,0.3);
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold-dark);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(44px, 5.5vw, 68px);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: 420px;
+      margin-bottom: 40px;
+      letter-spacing: -0.2px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: var(--radius-pill);
+      letter-spacing: -0.2px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(140,110,58,0.3);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 24px;
+      background: transparent;
+      color: var(--ink-soft);
+      font-size: 15px;
+      font-weight: 400;
+      text-decoration: none;
+      border: 1px solid rgba(26,23,20,0.15);
+      border-radius: var(--radius-pill);
+      letter-spacing: -0.2px;
+      transition: color 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--ink);
+      border-color: rgba(26,23,20,0.4);
+      transform: translateY(-2px);
+    }
+
+    .hero-price-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--ink-muted);
+      letter-spacing: -0.1px;
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-card-stack {
+      position: relative;
+      width: 380px;
+      height: 480px;
+    }
+
+    .hero-card-stack .card-img {
+      position: absolute;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lift);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .hero-card-stack .card-img:nth-child(1) {
+      width: 260px;
+      top: 60px;
+      left: 0;
+      transform: rotate(-6deg);
+      z-index: 1;
+    }
+
+    .hero-card-stack .card-img:nth-child(2) {
+      width: 280px;
+      top: 20px;
+      right: 0;
+      transform: rotate(4deg);
+      z-index: 2;
+    }
+
+    .hero-card-stack .card-img:nth-child(3) {
+      width: 300px;
+      bottom: 0;
+      left: 40px;
+      transform: rotate(-2deg);
+      z-index: 3;
+    }
+
+    .hero-card-stack:hover .card-img:nth-child(1) { transform: rotate(-10deg) translate(-8px, -8px); }
+    .hero-card-stack:hover .card-img:nth-child(2) { transform: rotate(7deg) translate(8px, -12px); }
+    .hero-card-stack:hover .card-img:nth-child(3) { transform: rotate(-1deg) translateY(4px); }
+
+    .hero-qr-badge {
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      z-index: 10;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .qr-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--ink);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .qr-icon svg { width: 22px; height: 22px; fill: var(--white); }
+
+    .qr-badge-text { }
+    .qr-badge-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.1px;
+    }
+    .qr-badge-text span {
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section { width: 100%; }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .section-body {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      letter-spacing: -0.2px;
+      max-width: 520px;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      background: var(--ink);
+      padding: 120px 0;
+    }
+
+    .how .section-label { color: var(--gold-light); }
+    .how .section-title { color: var(--white); }
+    .how .section-body { color: rgba(255,255,255,0.6); }
+
+    .how-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 72px;
+    }
+
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .step {
+      background: rgba(255,255,255,0.04);
+      padding: 40px 36px;
+      position: relative;
+      transition: background 0.25s;
+    }
+
+    .step:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+    .step:last-child  { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    .step:hover { background: rgba(255,255,255,0.07); }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .step-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+      color: var(--gold-light);
+    }
+
+    .step h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .step p {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: -0.1px;
+    }
+
+    /* ─── COLLECTION ─── */
+    .collection {
+      padding: 120px 0;
+    }
+
+    .collection-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .collection-header .section-body {
+      margin: 0 auto;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .card-item {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .card-item-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+      display: block;
+    }
+
+    .card-item:hover .card-item-img {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: var(--shadow-lift);
+    }
+
+    .card-item-info {
+      padding: 18px 4px 0;
+    }
+
+    .card-item-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .card-item-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+      line-height: 1.25;
+    }
+
+    .card-item-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .card-item-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-item-price {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.2px;
+    }
+
+    .card-item-btn {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold-dark);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(140,110,58,0.3);
+      padding-bottom: 1px;
+      letter-spacing: -0.1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .card-item-btn:hover {
+      color: var(--gold-dark);
+      border-color: var(--gold-dark);
+    }
+
+    /* ─── QR FEATURE ─── */
+    .qr-feature {
+      background: var(--cream-dark);
+      padding: 120px 0;
+    }
+
+    .qr-feature-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .qr-steps {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .qr-step {
+      display: flex;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(26,23,20,0.08);
+      align-items: flex-start;
+    }
+
+    .qr-step:last-child { border-bottom: none; }
+
+    .qr-step-num {
+      width: 32px;
+      height: 32px;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .qr-step-content h4 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    .qr-step-content p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+    }
+
+    /* QR visual mockup */
+    .qr-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone-mockup {
+      width: 280px;
+      background: var(--ink);
+      border-radius: 36px;
+      padding: 16px;
+      box-shadow: var(--shadow-lift);
+      position: relative;
+    }
+
+    .phone-screen {
+      background: #f5f0ea;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 9/19;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      gap: 16px;
+    }
+
+    .phone-qr-box {
+      width: 120px;
+      height: 120px;
+      background: var(--white);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(26,23,20,0.12);
+    }
+
+    .phone-qr-box svg {
+      width: 80px;
+      height: 80px;
+    }
+
+    .phone-screen-text {
+      text-align: center;
+    }
+
+    .phone-screen-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .phone-screen-text span {
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-weight: 300;
+    }
+
+    .phone-play-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phone-play-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--white);
+      margin-left: 3px;
+    }
+
+    .phone-bar {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 5px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 3px;
+    }
+
+    .card-float {
+      position: absolute;
+      right: -50px;
+      top: 40px;
+      width: 150px;
+      border-radius: 10px;
+      box-shadow: var(--shadow-lift);
+      transform: rotate(6deg);
+    }
+
+    .qr-visual-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* ─── PROMISE / VALUES ─── */
+    .values {
+      padding: 120px 0;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-top: 64px;
+    }
+
+    .value-item { }
+
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+
+    .value-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .value-item p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      letter-spacing: -0.1px;
+    }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      background: var(--ink);
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .cta-band .section-label { color: var(--gold-light); margin-bottom: 20px; }
+
+    .cta-band h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 4vw, 54px);
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .cta-band h2 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .cta-band p {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 40px;
+      letter-spacing: -0.2px;
+    }
+
+    .cta-band .btn-primary {
+      background: var(--gold);
+      font-size: 16px;
+      padding: 16px 36px;
+    }
+
+    .cta-band .btn-primary:hover {
+      background: var(--gold-light);
+      box-shadow: 0 8px 28px rgba(184,151,90,0.4);
+    }
+
+    .price-range {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: -0.1px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--cream-dark);
+      padding: 60px 0 40px;
+      border-top: 1px solid rgba(26,23,20,0.08);
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand {}
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span { color: var(--gold); }
+
+    .footer-tagline {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul a {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover { color: var(--ink); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid rgba(26,23,20,0.08);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-weight: 300;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      font-size: 12px;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+
+    .footer-legal a:hover { color: var(--ink); }
+
+    /* ─── DIVIDER ─── */
+    .gold-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; padding: 60px 40px; min-height: auto; gap: 60px; }
+      .hero-text { padding-right: 0; }
+      .hero-card-stack { width: 320px; height: 400px; margin: 0 auto; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .how-header { grid-template-columns: 1fr; gap: 24px; }
+      .qr-feature-inner { grid-template-columns: 1fr; gap: 60px; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 40px 20px; }
+      .section-inner { padding: 0 20px; }
+      .how { padding: 80px 0; }
+      .how-steps { grid-template-columns: 1fr; gap: 2px; }
+      .step:first-child { border-radius: var(--radius-md) var(--radius-md) 0 0; }
+      .step:last-child  { border-radius: 0 0 var(--radius-md) var(--radius-md); }
+      .collection { padding: 80px 0; }
+      .cards-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .qr-feature { padding: 80px 0; }
+      .values { padding: 80px 0; }
+      .values-grid { grid-template-columns: 1fr; gap: 36px; }
+      .cta-band { padding: 80px 0; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .card-float { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="#" class="nav-logo">Momento<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#collection">Cards</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="#collection" class="nav-cta">Shop Cards</a>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section>
+    <div class="hero">
+      <div class="hero-text">
+        <div class="hero-tag">New — College Milestone Cards</div>
+        <h1>Every big moment<br>deserves a <em>real</em> one.</h1>
+        <p class="hero-sub">Premium greeting cards crafted for college milestones — each with a built-in QR code that turns your card into a personalized video keepsake.</p>
+        <div class="hero-actions">
+          <a href="#collection" class="btn-primary">
+            Shop the Collection
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </a>
+          <a href="#how-it-works" class="btn-ghost">See how it works</a>
+        </div>
+        <p class="hero-price-note">Cards from $7 — free video upload included</p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <img class="card-img" src="lsat.jpg" alt="LSAT Congratulations Card" />
+          <img class="card-img" src="cpa.jpg" alt="CPA Exam Congratulations Card" />
+          <img class="card-img" src="dorm.jpg" alt="First Dorm Room Card" />
+
+          <div class="hero-qr-badge">
+            <div class="qr-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="5" y="5" width="3" height="3" rx="0.5" fill="#1a1714"/>
+                <rect x="16" y="5" width="3" height="3" rx="0.5" fill="#1a1714"/>
+                <rect x="5" y="16" width="3" height="3" rx="0.5" fill="#1a1714"/>
+                <rect x="14" y="14" width="3" height="3" rx="0.5"/>
+                <rect x="18" y="14" width="3" height="3" rx="0.5"/>
+                <rect x="14" y="18" width="3" height="3" rx="0.5"/>
+                <rect x="18" y="18" width="3" height="3" rx="0.5"/>
+              </svg>
+            </div>
+            <div class="qr-badge-text">
+              <strong>Scan to play video</strong>
+              <span>Every card includes this</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW IT WORKS ─── -->
+  <section class="how" id="how-it-works">
+    <div class="section-inner">
+      <div class="how-header">
+        <div>
+          <div class="section-label">How It Works</div>
+          <h2 class="section-title">A card that keeps<br>on giving.</h2>
+        </div>
+        <p class="section-body">Momento cards bridge the physical and digital — a beautiful card in hand, a personal video inside. Here's how the experience unfolds.</p>
+      </div>
+
+      <div class="how-steps">
+        <div class="step">
+          <div class="step-num">Step 01</div>
+          <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="12" width="32" height="28" rx="3"/>
+            <path d="M16 12V9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"/>
+            <path d="M24 24v6M21 27h6"/>
+          </svg>
+          <h3>Buy a Card</h3>
+          <p>Choose from our collection of milestone cards, each designed for a specific college achievement. $7–$12 per card.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">Step 02</div>
+          <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="10" width="24" height="18" rx="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <path d="M6 24l5-4 4 3 4-5 5 4"/>
+            <path d="M33 16l9 6-9 6V16z"/>
+          </svg>
+          <h3>Record Your Message</h3>
+          <p>Scan the unique QR code inside and upload a personal video message from any phone or computer — no app required.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">Step 03</div>
+          <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 8c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16"/>
+            <path d="M36 8v8h-8"/>
+            <path d="M20 24l3.5 3.5L30 20"/>
+          </svg>
+          <h3>They Scan & Watch</h3>
+          <p>The recipient scans the same QR code in their card to instantly watch your message — a keepsake they'll return to forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── COLLECTION ─── -->
+  <section class="collection" id="collection">
+    <div class="section-inner">
+      <div class="collection-header">
+        <div class="section-label">The Collection</div>
+        <h2 class="section-title">Cards for every win.</h2>
+        <p class="section-body">Because landing an internship deserves more than a text. Each card is designed to honor a specific college milestone — beautiful enough to keep, meaningful enough to remember.</p>
+      </div>
+
+      <div class="cards-grid">
+
+        <div class="card-item">
+          <img class="card-item-img" src="internship.jpg" alt="Internship Congratulations Card" />
+          <div class="card-item-info">
+            <div class="card-item-tag">Career Milestone</div>
+            <div class="card-item-name">You Got the Internship</div>
+            <div class="card-item-desc">For the student who landed their first big opportunity. Cheers to day one.</div>
+            <div class="card-item-footer">
+              <span class="card-item-price">$9</span>
+              <a href="#" class="card-item-btn">Add to Cart →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <img class="card-item-img" src="dorm.jpg" alt="First Dorm Room Card" />
+          <div class="card-item-info">
+            <div class="card-item-tag">New Beginnings</div>
+            <div class="card-item-name">First Dorm Room</div>
+            <div class="card-item-desc">Moving into their first space of their own. A happy place, made even happier.</div>
+            <div class="card-item-footer">
+              <span class="card-item-price">$8</span>
+              <a href="#" class="card-item-btn">Add to Cart →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <img class="card-item-img" src="cpa.jpg" alt="CPA Exam Congratulations Card" />
+          <div class="card-item-info">
+            <div class="card-item-tag">Academic Achievement</div>
+            <div class="card-item-name">Passing the CPA Exam</div>
+            <div class="card-item-desc">One of the hardest exams out there. Their hard work and dedication paid off.</div>
+            <div class="card-item-footer">
+              <span class="card-item-price">$10</span>
+              <a href="#" class="card-item-btn">Add to Cart →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <img class="card-item-img" src="lsat.jpg" alt="LSAT Congratulations Card" />
+          <div class="card-item-info">
+            <div class="card-item-tag">Academic Achievement</div>
+            <div class="card-item-name">Passing the LSAT</div>
+            <div class="card-item-desc">Future lawyer. The first step to the bar starts right here, right now.</div>
+            <div class="card-item-footer">
+              <span class="card-item-price">$10</span>
+              <a href="#" class="card-item-btn">Add to Cart →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── QR FEATURE ─── -->
+  <section class="qr-feature" id="about">
+    <div class="section-inner">
+      <div class="qr-feature-inner">
+        <div>
+          <div class="section-label">The Momento Experience</div>
+          <div class="gold-divider"></div>
+          <h2 class="section-title">More than a card.<br>A moment that lasts.</h2>
+          <p class="section-body">Traditional cards end up in a drawer. Momento cards become a keepsake — with a real, personal video message locked inside every QR code, forever.</p>
+
+          <div class="qr-steps">
+            <div class="qr-step">
+              <div class="qr-step-num">1</div>
+              <div class="qr-step-content">
+                <h4>Each card has a unique QR code</h4>
+                <p>Printed inside every Momento card is a one-of-a-kind QR code tied to a private, secure video URL — only accessible to the people who have the card.</p>
+              </div>
+            </div>
+            <div class="qr-step">
+              <div class="qr-step-num">2</div>
+              <div class="qr-step-content">
+                <h4>Upload from any device — no app needed</h4>
+                <p>The buyer scans the QR code and records or uploads a video message directly in their browser. Works on iPhone, Android, and desktop.</p>
+              </div>
+            </div>
+            <div class="qr-step">
+              <div class="qr-step-num">3</div>
+              <div class="qr-step-content">
+                <h4>Recipient watches, keeps, and revisits</h4>
+                <p>When the recipient scans the same code, they see your video. It stays there — accessible anytime, for as long as they keep the card.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qr-visual">
+          <div class="qr-visual-wrap">
+            <div class="phone-mockup">
+              <div class="phone-bar"></div>
+              <div class="phone-screen">
+                <div class="phone-qr-box">
+                  <!-- QR code SVG representation -->
+                  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Top-left finder pattern -->
+                    <rect x="5" y="5" width="26" height="26" rx="4" fill="#1a1714"/>
+                    <rect x="9" y="9" width="18" height="18" rx="2" fill="#f5f0ea"/>
+                    <rect x="13" y="13" width="10" height="10" rx="1" fill="#1a1714"/>
+                    <!-- Top-right finder pattern -->
+                    <rect x="49" y="5" width="26" height="26" rx="4" fill="#1a1714"/>
+                    <rect x="53" y="9" width="18" height="18" rx="2" fill="#f5f0ea"/>
+                    <rect x="57" y="13" width="10" height="10" rx="1" fill="#1a1714"/>
+                    <!-- Bottom-left finder pattern -->
+                    <rect x="5" y="49" width="26" height="26" rx="4" fill="#1a1714"/>
+                    <rect x="9" y="53" width="18" height="18" rx="2" fill="#f5f0ea"/>
+                    <rect x="13" y="57" width="10" height="10" rx="1" fill="#1a1714"/>
+                    <!-- Data modules -->
+                    <rect x="35" y="5" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="42" y="5" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="35" y="12" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="35" y="19" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="42" y="19" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="5" y="35" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="12" y="35" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="19" y="35" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="5" y="42" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="19" y="42" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="35" y="35" width="5" height="5" rx="1" fill="#b8975a"/>
+                    <rect x="42" y="35" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="49" y="35" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="56" y="35" width="5" height="5" rx="1" fill="#b8975a"/>
+                    <rect x="63" y="35" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="70" y="35" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="35" y="42" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="49" y="42" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="63" y="42" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="35" y="49" width="5" height="5" rx="1" fill="#b8975a"/>
+                    <rect x="42" y="49" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="56" y="49" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="70" y="49" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="35" y="56" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="49" y="56" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="63" y="56" width="5" height="5" rx="1" fill="#b8975a"/>
+                    <rect x="35" y="63" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="42" y="63" width="5" height="5" rx="1" fill="#b8975a"/>
+                    <rect x="56" y="63" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="70" y="63" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="35" y="70" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="49" y="70" width="5" height="5" rx="1" fill="#1a1714"/>
+                    <rect x="63" y="70" width="5" height="5" rx="1" fill="#1a1714"/>
+                  </svg>
+                </div>
+                <div class="phone-screen-text">
+                  <strong>Scan to watch</strong>
+                  <span>A message just for you</span>
+                </div>
+                <div class="phone-play-btn">
+                  <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+                </div>
+              </div>
+            </div>
+            <img class="card-float" src="internship.jpg" alt="Sample card" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── VALUES ─── -->
+  <section class="values">
+    <div class="section-inner">
+      <div class="section-label">Why Momento</div>
+      <h2 class="section-title">Built for the moments<br>that actually matter.</h2>
+
+      <div class="values-grid">
+        <div class="value-item">
+          <svg class="value-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 6C13.2 6 6 13.2 6 22s7.2 16 16 16 16-7.2 16-16S30.8 6 22 6z"/>
+            <path d="M16 22l4 4 8-8"/>
+          </svg>
+          <h3>Milestone-Specific</h3>
+          <p>Every card is designed for one specific achievement — not generic "congratulations," but the real thing. From LSAT to first dorm room.</p>
+        </div>
+        <div class="value-item">
+          <svg class="value-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="10" width="32" height="26" rx="4"/>
+            <path d="M18 10V7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3"/>
+            <path d="M6 18h32"/>
+            <path d="M14 26h4M14 30h8"/>
+          </svg>
+          <h3>Premium Design</h3>
+          <p>Crafted with premium cardstock, foil-accented artwork, and thoughtful design — worthy of the achievement it celebrates.</p>
+        </div>
+        <div class="value-item">
+          <svg class="value-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 6l3.5 8.5L34 16l-6 6 1.5 9L22 27l-7.5 4L16 22l-6-6 8.5-1.5L22 6z"/>
+          </svg>
+          <h3>A Lasting Keepsake</h3>
+          <p>The QR video link never expires. Every time they look at the card, they can watch the message again — years from now.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA BAND ─── -->
+  <section class="cta-band">
+    <div class="section-inner" style="text-align:center;">
+      <div class="section-label">Start Here</div>
+      <h2>Send something they'll<br><em>never forget.</em></h2>
+      <p>Pick a card, record your message, and make their milestone unforgettable.</p>
+      <a href="#collection" class="btn-primary">Shop All Cards</a>
+      <p class="price-range">Cards from $7 &nbsp;·&nbsp; Free video hosting &nbsp;·&nbsp; Ships in 2–3 days</p>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">Momento<span>.</span></div>
+          <p class="footer-tagline">Premium celebration cards for college milestones — with a personal video message inside every QR code.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Cards</h4>
+          <ul>
+            <li><a href="#">Internship</a></li>
+            <li><a href="#">First Dorm Room</a></li>
+            <li><a href="#">CPA Exam</a></li>
+            <li><a href="#">LSAT</a></li>
+            <li><a href="#">View All</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">Bulk Orders</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 Momento, LLC. All rights reserved.</span>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Shipping Info</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
